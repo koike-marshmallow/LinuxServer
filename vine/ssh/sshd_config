@@ -1,0 +1,6 @@
+PermitRootLogin no
+PasswordAuthentication yes
+PermitEmptyPasswords no
+RhostsRSAAuthentication no
+ServerKeyBits 1024
+AllowUsers Owner

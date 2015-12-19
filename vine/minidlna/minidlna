@@ -1,0 +1,54 @@
+#!/bin/sh
+
+# chkconfig: 345 99 10
+# description: MiniDLNA is server software with the aim of being fully compliant with DLNA/UPnP-AV clients.
+
+MINIDLNA=/usr/sbin/minidlnad
+ARGS='-f /etc/minidlna.conf'
+PIDFILE=/var/run/minidlna/minidlna.pid
+LOCKFILE=/var/lock/subsys/minidlna
+
+test -f $MINIDLNA || exit 0
+
+. /etc/rc.d/init.d/functions
+
+start(){
+echo -n "Starting minidlna : "
+daemon --pidfile $PIDFILE $MINIDLNA $ARGS
+RETVAL=$?
+[ $RETVAL -ne 0 ] && failure
+[ $RETVAL -eq 0 ] && touch $LOCKFILE && success
+echo
+return $RETVAL
+}
+stop(){
+echo -n "Stopping minidlna : "
+killproc -p $PIDFILE $MINIDLNA
+RETVAL=$?
+[ $RETVAL -ne 0 ] && failure
+[ $RETVAL -eq 0 ] && rm -f /var/cache/minidlna/files.db
+[ $RETVAL -eq 0 ] && rm -f $LOCKFILE && success
+echo
+return $RETVAL
+}
+
+case "$1" in
+start)
+start
+;;
+stop)
+stop
+;;
+restart|reload)
+stop
+start
+;;
+status)
+status $MINIDLNA
+;;
+*)
+echo "Usage: $0 {start|stop|restart|reload|status}"
+exit 1
+esac
+
+exit 0
