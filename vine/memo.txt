@@ -1,0 +1,22 @@
+初期化スクリプト(起動時に実行されるスクリプト)
+  /etc/rc.local
+
+[samba]
+設定ファイル
+  /etc/samba/smb.conf
+実行ファイル
+  /etc/rc.d/init.d/smb
+  (/etc/rc.d/init.d/nmb)
+
+[minidlna]
+設定ファイル
+  /etc/minidlna.conf
+実行ファイル
+  /usr/sbin/minidlnad
+  /etc/rc.d/init.d/minidlna
+
+[ssh]
+設定ファイル
+  /etc/ssh/sshd_config
+実行
+  /etc/rc.d/init.d/sshd

@@ -1,0 +1,4 @@
+ip address config
+  /etc/sysconfig/network-scripts/ifcfg-eth0
+host name config
+  /etc/sysconfig/network
