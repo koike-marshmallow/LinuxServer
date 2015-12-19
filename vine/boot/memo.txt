@@ -1,0 +1,11 @@
+grubブートローダ設定ファイル
+  /boot/grub/grub.conf
+
+VineLixux (boot cui)
+cuiでの起動, xウインドウを起動しない
+VineLinux (current kernel)
+起動中にグラフィック画面を表示しない, 起動中にコンソールが表示
+VineLinux (previous kernel)
+起動中にグラフィック画面を表示する, OSアイコンとプログレスバー
+Windows
+ウインドウズ
