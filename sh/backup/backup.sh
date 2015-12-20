@@ -28,16 +28,22 @@ print_log "sources: ${sources[@]}"
 
 for src in ${sources[@]}
 do
-	if [ $1 = "run" ]
+	if [ "$1" = "run" ]
 	then
+		print_log ""
+		print_log "---------------"
 		print_log "----- start backup \"${src}\""
 		rsync $src $backup_dest -av --delete >> $log_file_dest 2>&1
 	else
+		print_log ""
+		print_log "---------------"
 		print_log "----- backup dry run \"${src}\""
 		rsync $src $backup_dest -avn --delete >> $log_file_dest 2>&1
 	fi
 done
 
+print_log ""
+print_log "--------------"
 print_log "----- backup complete."
 
 datestr=`date '+%c'`
