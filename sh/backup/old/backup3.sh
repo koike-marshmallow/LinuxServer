@@ -12,7 +12,7 @@ print_log()
 
 ##configuation
 backup_dest=/mnt/nas_hdd1/NAS_BACKUP/  #スラッシュをつけること
-sources=(/mnt/nas_hdd1/test /mnt/nas_usm1)
+sources=(/mnt/nas_hdd1/SAMBA_HOMES/pi /home/samba/public)
 
 
 ##mainscript
@@ -38,7 +38,4 @@ do
 	fi
 done
 
-print_log "----- backup complete."
-
-datestr=`date '+%c'`
-print_log "BACKUP PROCESS END (${datestr})"
+echo "----- backup complete." >> $log_file_dest
