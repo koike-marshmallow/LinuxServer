@@ -22,6 +22,14 @@ then
 	"statechg" )
 		grep "chg:YES" $select_file
 	;;
+	"cspinup" )
+		if [ $select_file = "all" ]
+		then
+			cat hdd_spindown*.txt | grep "SPINUP" | wc -l
+		else
+			grep "SPINUP" $select_file | wc -l
+		fi
+	;;
 	* )
 		echo "未定義のコマンド: $1"
 	;;
