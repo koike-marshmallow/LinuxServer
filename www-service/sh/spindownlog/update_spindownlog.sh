@@ -25,6 +25,11 @@ echo "FILE NAME: ${log_file_path}" >> $dest_file
 echo "UPDATE TIME: " `date` >> $dest_file
 echo "------------------------------" >> $dest_file
 
+echo "[CHKSPIN]" >> $dest_file
+grep -E "(SPINUP|SPINDOWN|initialization)" $log_file_path >> $dest_file
+echo "------------------------------" >> $dest_file
+
+echo "[RECENT LOG]" >> $dest_file
 tail -n $copy_rows_count $log_file_path >> $dest_file
 
 echo "</code></pre></body>" >> $dest_file
