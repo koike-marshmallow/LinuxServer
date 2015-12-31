@@ -47,7 +47,6 @@ print_log "    timeout  : ${timeout}"
 #initialize
 for i in `seq 0 $((${#devices[@]}-1))`
 do	spins[$i]=0
-	sleep_time[$i]=0
 	prestats[$i]=""
 done
 
@@ -90,23 +89,20 @@ do
 				hdparm -y /dev/${devices[$i]} > /dev/null
 				spins[$i]=0
 			fi
-		elif [ ${spins[$i]} -eq 0 ]
-		then
-			sleep_time[$i]=`expr ${sleep_time[$i]} + ${interval}`
 		fi
-		print_log "(${i} ${devices[$i]})   chg:NO  spin:${spins[$i]} count:${counts[$i]} sleep_time:${sleep_time[$i]}"
+		print_log "(${i} ${devices[$i]})   chg:NO  spin:${spins[$i]} count:${counts[$i]}"
 	else
 		#IN stat changed
 		if [ ${spins[$i]} -eq 0 ]
-	 	then
+		then
 			print_log "(${i} ${devices[$i]}) SPINUP: access detected."
 		fi
 		counts[$i]=${timeout}
 		spins[$i]=1
 		prestats[$i]=${newstat}
-		print_log "(${i} ${devices[$i]})   chg:YES spin:${spins[$i]} count:${counts[$i]} sleep_time:${sleep_time[$i]}"
+		print_log "(${i} ${devices[$i]})   chg:YES spin:${spins[$i]} count:${counts[$i]}"
 	fi
-	#print_log "(${i} ${devices[$i]})   stat:\"${newstat}\""
+	print_log "(${i} ${devices[$i]})   stat:\"${newstat}\""
 done
 
 sleep ${interval}
