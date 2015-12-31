@@ -27,6 +27,8 @@ else
 	html_title=$1
 fi
 
+#init html file
+: > $output_file
 
 #write html header
 htmlout "<html>"

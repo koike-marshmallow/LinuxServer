@@ -1,7 +1,8 @@
 #!/bin/sh
 
 #configure
-dest_file="/var/www/html/spindownlog_latest.html"
+dest_file="/var/www/html/spindownlog_latest.txt"
+html_dest_file="/var/www/html/spindownlog_latest.html"
 copy_rows_count=30
 
 
@@ -14,25 +15,19 @@ log_file_path="${log_file_dir}hdd_spindown${datestr}.txt"
 #prepare destination file
 : > $dest_file
 
-#write html header
-echo "<html>" >> $dest_file
-echo "<head><meta charset=\"utf-8\"/></head>" >> $dest_file
-
-#write log record(body)
-echo "<body><pre><code>" >> $dest_file
-
+#write header
 echo "FILE NAME: ${log_file_path}" >> $dest_file
 echo "UPDATE TIME: " `date` >> $dest_file
-echo "------------------------------" >> $dest_file
 
-echo "[CHKSPIN]" >> $dest_file
+#write chkspin log
+echo "------------------------------" >> $dest_file
+echo "- CHKSPIN -" >> $dest_file
 grep -E "(SPINUP|SPINDOWN|initialization)" $log_file_path >> $dest_file
-echo "------------------------------" >> $dest_file
 
-echo "[RECENT LOG]" >> $dest_file
+#write recent log
+echo "------------------------------" >> $dest_file
+echo "- RECENT LOG -" >> $dest_file
 tail -n $copy_rows_count $log_file_path >> $dest_file
 
-echo "</code></pre></body>" >> $dest_file
-
-#write html footer
-echo "</html>" >> $dest_file
+#convert to html
+/usr/local/bin/htmlconvert.sh $dest_file $html_dest_file

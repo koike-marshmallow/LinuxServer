@@ -1,0 +1,6 @@
+#!/bin/sh
+
+source=update_spindownlog.sh
+target_dir=/usr/local/bin/
+
+cp $source $target_dir
