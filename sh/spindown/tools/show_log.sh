@@ -1,7 +1,7 @@
 #!/bin/sh
 
 date_str=`date '+%y%m%d'`
-today_file_name="hdd_spindown${date_str}.txt"
+today_file_name="counterlog${date_str}.txt"
 
 if [ $2 ]
 then

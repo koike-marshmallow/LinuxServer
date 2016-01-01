@@ -9,7 +9,7 @@ copy_rows_count=30
 #set log file path
 datestr=`date '+%y%m%d'`
 log_file_dir="/home/ubuntu/log/spindown/"
-log_file_path="${log_file_dir}hdd_spindown${datestr}.txt"
+log_file_path="${log_file_dir}counterlog${datestr}.txt"
 
 
 #prepare destination file
