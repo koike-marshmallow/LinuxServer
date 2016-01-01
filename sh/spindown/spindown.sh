@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #log file configure
-log_file_dir="/home/owner/log/spindown/"
+log_file_dir="/home/ubuntu/log/spindown/"
 
 print_log()
 {
