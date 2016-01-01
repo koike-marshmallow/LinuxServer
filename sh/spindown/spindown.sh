@@ -1,12 +1,24 @@
 #!/bin/bash
 
+#log file configure
+log_file_dir="/home/owner/log/spindown/"
+
 print_log()
 {
 	datestr=`date '+%y%m%d'`
-	file_dest="/home/pi/log/hdd_spindown${datestr}.txt"
+	counter_log_dest="${log_file_dir}counterlog${datestr}.txt"
 	datestr=`date '+%y/%m/%d %T'`
-	#echo "[${datestr}] $@"
-	echo "[${datestr}] $@" >> ${file_dest}
+	echo "[${datestr}] $@" >> $counter_log_dest
+}
+
+#state log syntax
+#<date> <time> <didx> <dname> <spin> <stat>
+state_log()
+{
+	datestr=`date '+%y%m%d'`
+	state_log_dest="${log_file_dir}statelog${datestr}-${1}.txt"
+	datestr=`date '+%y/%m/%d %T'`
+	echo "${datestr} $@" >> $state_log_dest
 }
 
 
@@ -16,8 +28,8 @@ print_log()
 #configure
 uuids=("065A38875A387591")
 devices=("")
-interval=5
-timeout=30
+interval=60
+timeout=1800
 
 #get device name
 for i in `seq 0 $((${#uuids[@]}-1))`
@@ -106,7 +118,7 @@ do
 		prestats[$i]=${newstat}
 		print_log "(${i} ${devices[$i]})   chg:YES spin:${spins[$i]} count:${counts[$i]} sleep_time:${sleep_time[$i]}"
 	fi
-	#print_log "(${i} ${devices[$i]})   stat:\"${newstat}\""
+	state_log ${i} ${devices[$i]} ${spins[$i]} ${newstat}
 done
 
 sleep ${interval}
