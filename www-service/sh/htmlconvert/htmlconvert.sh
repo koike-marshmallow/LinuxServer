@@ -31,6 +31,7 @@ fi
 : > $output_file
 
 #write html header
+htmlout "<!DOCTYPE html>"
 htmlout "<html>"
 htmlout 	"<head>"
 htmlout 		"<title>${html_title}</title>"
@@ -41,7 +42,7 @@ htmlout 	"</head>"
 htmlout "<body>"
 htmlout "<pre><code>"
 cat $input_file >> $output_file
-htmlout "</pre></code>"
+htmlout "</code></pre>"
 htmlout "</body>"
 
 #write html footer
