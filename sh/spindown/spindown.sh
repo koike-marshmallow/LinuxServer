@@ -70,8 +70,8 @@ log()
 log "INIT" "-- hdd spindown daemon initilazed!! --"
 log "INIT" "interval value: ${INTERVAL}"
 log "INIT" "timeout value: ${TIMEOUT}"
-log "INFO" "uuid configurations: ${uuids[@]} (${#uuids[@]})"
-log "INFO" "device configurations: ${devices[@]} (${#devices[@]})"
+log "INFO" "uuid configurations: ${UUIDS[@]} (${#UUIDS[@]})"
+log "INFO" "device configurations: ${DEVICES[@]} (${#DEVICES[@]})"
 
 
 # cofigure device name
@@ -122,7 +122,7 @@ do
 				if [ ${counts[$i]} -le 0 ] ; then
           log "NOTC" "ID:${i} DEVICE:${DEVICES[$i]} SPINDOWN issuing standby command."
 					### ISSUING SPINDOWN COMMAND ###
-					#hdparm -y /dev/${devices[$i]} > /dev/null
+					hdparm -y /dev/${DEVICES[$i]} > /dev/null
 					spins[$i]=0
 				fi
 			fi
