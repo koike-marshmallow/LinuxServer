@@ -2,9 +2,9 @@
 
 ### Configuration ###
 UUIDS=()
-DEVICES=("sda5" "sda1")
-INTERVAL=5
-TIMEOUT=30
+DEVICES=()
+INTERVAL=60
+TIMEOUT=3600
 
 LOG_DIR="logs"
 LOG_LEVEL=1
@@ -30,8 +30,8 @@ write_log()
   else
     log_dest="${log_dir}/${log_name}.log"
   fi
-  echo "${log_dest}> [$(date '+%y%m%d %T')] $@"
-  #echo "[$(date '+%y/%m/%d %T')] $@" >> ${log_dest}
+  #echo "${log_dest}> [$(date '+%y%m%d %T')] $@"
+  echo "[$(date '+%y/%m/%d %T')] $@" >> ${log_dest}
 }
 
 write_log_leveling()
