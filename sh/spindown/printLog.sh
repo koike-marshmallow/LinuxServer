@@ -22,7 +22,7 @@ write_log()
   else
     log_dest="${log_dir}/${log_name}.log"
   fi
-  echo "${log_dest}> [$(date '+%y%m%d %T')] $@"
+  echo "${log_dest}> [$(date '+%y/%m/%d %T')] $@"
   echo "[$(date '+%y/%m/%d %T')] $@" >> ${log_dest}
 }
 
