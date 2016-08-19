@@ -126,7 +126,7 @@ do
 					spins[$i]=0
 				fi
 			fi
-      log "CNT" "#${i} ${DEVICES[$i]} 1 ${spins[$i]} ${counts[$i]}"
+      log "CNT" "#${i} ${DEVICES[$i]} 0 ${spins[$i]} ${counts[$i]}"
 		else
 			# in stat CHAMGED
 			if [ ${spins[$i]} -eq 0 ] ; then
@@ -135,7 +135,7 @@ do
 			counts[$i]=${TIMEOUT}
 			spins[$i]=1
 			prestats[$i]=${newstat}
-      log "CNT" "#${i} ${DEVICES[$i]} 0 ${spins[$i]} ${counts[$i]}"
+      log "CNT" "#${i} ${DEVICES[$i]} 1 ${spins[$i]} ${counts[$i]}"
 		fi
 	done
 
