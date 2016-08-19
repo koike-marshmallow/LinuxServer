@@ -26,5 +26,19 @@ write_log()
   echo "[$(date '+%y/%m/%d %T')] $@" >> ${log_dest}
 }
 
+write_log_leveling()
+{
+  # configure
+  log_level=1
+  # argument check
+  expr $1 + 1 > /dev/null 2>&1
+  if [ $? -lt 2 ] ; then
+    #logging
+    if [ $1 -ge ${log_level} ] ; then
+      shift
+      write_log $@
+    fi
+  fi
+}
 
-write_log $@
+write_log_leveling $@
